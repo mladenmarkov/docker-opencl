@@ -47,3 +47,10 @@ RUN git clone https://github.com/ZerBea/hcxdumptool.git && cd hcxdumptool && git
 
 RUN git clone https://github.com/hashcat/kwprocessor.git && cd kwprocessor && git checkout ${HCXKEYS_VERSION} && make
 RUN ln -s /root/kwprocessor/kwp /usr/bin/kwp
+
+RUN apt-get install -y openssl libssl-dev libboost-all-dev mariadb-server libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev libzstd-dev cmake
+RUN wget https://github.com/facebook/rocksdb/archive/refs/tags/v6.16.4.tar.gz
+RUN tar xzf v6.16.4.tar.gz
+RUN cd rocksdb-6.16.4
+RUN make shared_lib
+RUN sudo make install
