@@ -26,7 +26,7 @@ ENV HASHCAT_UTILS_VERSION  v1.9
 ENV HCXTOOLS_VERSION       6.2.7
 ENV HCXDUMPTOOL_VERSION    6.2.7
 ENV HCXKEYS_VERSION        master
-ENV ROCKSDB_VERSION        6.16.4
+ENV ROCKSDB_VERSION        v6.16.4
 
 # Update & install packages for installing hashcat
 RUN apt-get update && \
