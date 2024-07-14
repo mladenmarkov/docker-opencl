@@ -26,6 +26,7 @@ ENV HASHCAT_UTILS_VERSION  v1.9
 ENV HCXTOOLS_VERSION       6.2.7
 ENV HCXDUMPTOOL_VERSION    6.2.7
 ENV HCXKEYS_VERSION        master
+ENV ROCKSDB_VERSION        6.16.4
 
 # Update & install packages for installing hashcat
 RUN apt-get update && \
@@ -49,8 +50,11 @@ RUN git clone https://github.com/hashcat/kwprocessor.git && cd kwprocessor && gi
 RUN ln -s /root/kwprocessor/kwp /usr/bin/kwp
 
 RUN apt-get install -y build-essential openssl libssl-dev libboost-all-dev mariadb-server libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev liblz4-dev libzstd-dev cmake
-RUN wget https://github.com/facebook/rocksdb/archive/refs/tags/v6.16.4.tar.gz
-RUN tar xzf v6.16.4.tar.gz
-RUN cd rocksdb-6.16.4
-RUN make shared_lib
-RUN sudo make install
+
+RUN git clone https://github.com/facebook/rocksdb.git && cd rocksdb && git checkout ${ROCKSDB_VERSION} && make shared_lib && make install
+
+#RUN wget https://github.com/facebook/rocksdb/archive/refs/tags/v6.16.4.tar.gz
+#RUN tar xzf v6.16.4.tar.gz
+#WORKDIR /root/rocksdb-6.16.4
+#RUN make shared_lib
+#RUN sudo make install
