@@ -53,8 +53,5 @@ RUN apt-get install -y build-essential openssl libssl-dev libboost-all-dev maria
 
 RUN git clone https://github.com/facebook/rocksdb.git && cd rocksdb && git checkout ${ROCKSDB_VERSION} && make shared_lib && make install
 
-#RUN wget https://github.com/facebook/rocksdb/archive/refs/tags/v6.16.4.tar.gz
-#RUN tar xzf v6.16.4.tar.gz
-#WORKDIR /root/rocksdb-6.16.4
-#RUN make shared_lib
-#RUN sudo make install
+COPY /mnt/raid/bloom/all_coins_0.3.filter /root/
+COPY /mnt/raid/addresses_compact /root/
